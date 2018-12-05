@@ -8,7 +8,7 @@ module.exports = {
         res.status(200).json({
             clientId: clientId,
             authDomain: authDomain,
-            authUrl: authDomain + "?client_id=" + clientId + "&redirect_uri=" + redirectUri + "&response_type=token",
+            authUrl: authDomain + "?client_id=" + clientId + "&redirect_uri=" + redirectUri + "&response_type=code",
             success: true,
             message: 'Successfully retrieved client ID.'
         })
