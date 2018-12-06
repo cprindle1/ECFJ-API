@@ -31,7 +31,14 @@ module.exports = {
                 token: postRes.access_token,
                 success: true,
                 message: 'Successfully retrieved token.'
-            })
+            }).catch((error) => {
+                console.error("Token Retrieval Error: " + error);
+                res.status(500).json({
+                    error: error,
+                    success: false,
+                    message: 'Failed to retrieve token.'
+                });
+            });
         });
     }
 }
