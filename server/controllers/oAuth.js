@@ -26,11 +26,10 @@ module.exports = {
             body: "grant_type=authorization_code&redirect_uri=oob&code=" + req.body.code
 
         }).then((postRes) => {
-            console.log(postRes);
             res.status(200).json({
-                accessToken: postRes.access_token,
-                xoAuthYahooGuid: postRes.xoauth_yahoo_guid,
-                refreshToken: postRes.refresh_token,
+                accessToken: JSON.parse(postRes).access_token,
+                xoAuthYahooGuid: JSON.parse(postRes).xoauth_yahoo_guid,
+                refreshToken: JSON.parse(postRes).refresh_token,
                 success: true,
                 message: 'Successfully retrieved token.'
             })
