@@ -16,14 +16,13 @@ module.exports = {
 
     getToken(req, res) {
         const encoded = process.env.encoded_client_id_client_secret;
-        const authDomain = process.env.auth_domain;
-        const redirectUri = process.env.redirect_uri;
+        const tokenDomain = process.env.token_domain;
         rp.post({
             headers: {
                 'Authorization': "Basic " + encoded,
                 'content-type': 'application/x-www-form-urlencoded'
             },
-            url: authDomain + "/oauth2/get_token",
+            url: tokenDomain + "/oauth2/get_token",
             body: "grant_type=authorization_code&redirect_uri=oob&code=" + req.body.code
 
         }).then((postRes) => {
