@@ -24,20 +24,21 @@ module.exports = {
                 'content-type': 'application/x-www-form-urlencoded'
             },
             url: authDomain + "/oauth2/get_token",
-            body: "grant_type=authorization_code&redirect_uri=" + redirectUri + "&code=" + req.body.code
+            body: "grant_type=authorization_code&redirect_uri=oob&code=" + req.body.code
 
         }).then((postRes) => {
+            console.log(postRes);
             res.status(200).json({
-                token: postRes.access_token,
+                token: postRes,
                 success: true,
                 message: 'Successfully retrieved token.'
-            }).catch((error) => {
-                console.error("Token Retrieval Error: " + error);
-                res.status(500).json({
-                    error: error,
-                    success: false,
-                    message: 'Failed to retrieve token.'
-                });
+            })
+        }).catch((error) => {
+            console.error("Token Retrieval Error: " + error);
+            res.status(500).json({
+                error: error,
+                success: false,
+                message: 'Failed to retrieve token.'
             });
         });
     }
