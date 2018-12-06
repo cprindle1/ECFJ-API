@@ -15,18 +15,23 @@ module.exports = {
     },
 
     getToken(req, res) {
-        const encoded = process.emitWarning.encoded_client_id_client_secret;
+        const encoded = process.env.encoded_client_id_client_secret;
         const authDomain = process.env.auth_domain;
         const redirectUri = process.env.redirect_uri;
         rp.post({
             headers: {
-                Authorization: Basic,
-                encoded,
+                'Authorization': "Basic " + encoded,
                 'content-type': 'application/x-www-form-urlencoded'
             },
             url: authDomain + "/oauth2/get_token",
             body: "grant_type=authorization_code&redirect_uri=" + redirectUri + "&code=" + req.body.code
 
-        }).then((postRes) => {});
+        }).then((postRes) => {
+            res.status(200).json({
+                token: postRes.access_token,
+                success: true,
+                message: 'Successfully retrieved token.'
+            })
+        });
     }
 }
