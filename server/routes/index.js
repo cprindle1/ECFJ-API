@@ -6,5 +6,5 @@ module.exports = (app) => {
     }));
 
     app.get('/api/getClientId', oAuth.getClientId);
-
+    app.post('/api/gettoken', oAuth.getToken);
 }
