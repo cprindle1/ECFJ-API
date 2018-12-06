@@ -22,7 +22,7 @@ module.exports = {
                 'Authorization': "Basic " + encoded,
                 'content-type': 'application/x-www-form-urlencoded'
             },
-            url: tokenDomain + "/oauth2/get_token",
+            url: tokenDomain,
             body: "grant_type=authorization_code&redirect_uri=oob&code=" + req.body.code
 
         }).then((postRes) => {
