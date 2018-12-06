@@ -28,7 +28,9 @@ module.exports = {
         }).then((postRes) => {
             console.log(postRes);
             res.status(200).json({
-                token: postRes,
+                accessToken: postRes.access_token,
+                xoAuthYahooGuid: postRes.xoauth_yahoo_guid,
+                refreshToken: postRes.refresh_token,
                 success: true,
                 message: 'Successfully retrieved token.'
             })
